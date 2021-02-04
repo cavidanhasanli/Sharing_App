@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <b>{{ request.user }}</b>
+    <h1>Home page</h1>
+
+    <a href="{% url 'create_file_page' %}">Buradan file yarada bilersiz</a>
+    <a href="{% url 'send_from_page' %}">Mene gonderilen fayllar</a>
+    <a href="{% url 'send_to_page' %}">Menim gonderdiyim  fayllar</a>
+    <br>
+    <br>
+        <table>
+        <thead>
+        <tr>
+            <td>Faylin adi</td>
+            <td>Faylin linki</td>
+            <td>Faylin yukleme tarixi</td>
+            <td>Faylin mezmunu</td>
+            <td>Gonder</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for a in all_data %}
+            <tr>
+            <td>{{ a.file_name }}</td>
+            <td><a href="{{ a.my_file.url }}">{{ a.my_file.url }}</a></td>
+            <td>{{ a.create_date }}</td>
+            <td>{{ a.file_description }}</td>
+            <td><form method="POST">{% csrf_token %}<input type="text" name="data-user" placeholder="gondereceyin userin adini qeyd edin"><input type="hidden" name="data-file" value="{{ a.id }}"><input id="btn-id" type="submit" name="submit" value="Gonder"></form></td>
+{#            <td><div style="text-align: center">#}
+{#                        {% for message in messages %}#}
+{#                            <h3 style="color: red" ;> {{ message }} </h3>#}
+{#                        {% endfor %}#}
+{#                    </div></td>#}
+        </tr>
+         {% endfor %}
+        </tbody>
+
+        </table>
+
+<script>
+
+    {% for message in messages %}
+        alert("{{ message }}")
+    {% endfor %}
+</script>
+</body>
+</html>

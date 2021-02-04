@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ request.user }}</h1>
+     <table>
+        <thead>
+        <tr>
+            <td>Faylin adi</td>
+            <td>Faylin linki</td>
+            <td>Faylin yukleme tarixi</td>
+            <td>Faylin mezmunu</td>
+            <td>Sherh otagi</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for i in send_from %}
+            {% for a in i %}
+            <tr>
+            <td>{{ a.file_name }}</td>
+            <td><a href="{{ a.my_file.url }}">{{ a.my_file.url }}</a></td>
+            <td>{{ a.create_date }}</td>
+            <td>{{ a.file_description }}</td>
+            <td><input type="submit" name="submit" value="Sherh otagi" id="file-name-{{ a.id }}"></td>
+            </tr>
+            {% endfor %}
+         {% endfor %}
+        </tbody>
+        </table>
+</body>
+</html>
