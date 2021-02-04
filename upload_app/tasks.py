@@ -1,9 +1,19 @@
 from celery import shared_task
-from .models import *
+from upload_app.models import *
+from django.utils import timezone
+from datetime import datetime, timedelta
+
+
+# delete_file(now)
+
 
 @shared_task()
-def delete_file(date):
-    deleted_task = CreateFiles.objects.get(create_date__in=date)
-    print(deleted_task)
-    deleted_task.delete()
-    return 'Success'
+def delete_file():
+    now = timezone.now() - timedelta(days=7)
+    print(now)
+    try:
+        get_data = CreateFiles.objects.get(create_date=now)
+        get_data.delete()
+    except:
+        None
+    print('bu silmek ucun funksiyadir ve isleyir')

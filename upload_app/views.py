@@ -9,15 +9,6 @@ from django.contrib import messages
 User = get_user_model()
 
 
-# from django.utils import timezone
-# from .tasks import delete_file
-# from datetime import datetime, timedelta
-
-# now = timezone.now() + timedelta(minutes=10)
-# print(now)
-# # delete_file(now)
-# print(CreateFiles.objects.get(create_date__in=now))
-
 # Create your views here.
 
 @login_required()

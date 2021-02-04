@@ -19,7 +19,7 @@ class CreateFiles(models.Model):
     file_name = models.CharField(max_length=50, null=True, blank=True)
     my_file = models.FileField(upload_to=content_file_name, null=True, blank=True)
     file_description = models.CharField(max_length=255, null=True, blank=True)
-    create_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    create_date = models.DateField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
         return f'{self.file_name}'

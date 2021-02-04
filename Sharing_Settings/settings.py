@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'upload_app.apps.UploadAppConfig',
     'celery',
     'widget_tweaks',
-    'channels',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +148,10 @@ CELERY_BROKER_URL = 'redis://:p46cd8a6491d592e2092b7009bc3d0e45f21bcefa1b742a208
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+
+CELERY_BEAT_SCHEDULE = {
+    'delete-file':{
+        'task':'upload_app.tasks.delete_file',
+        'schedule':15.0,
+    }
+}
