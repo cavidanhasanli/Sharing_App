@@ -74,8 +74,9 @@ TEMPLATES = [
 ]
 
 #WSGI_APPLICATION = 'Sharing_Settings.wsgi.application'
-ASGI_APPLICATION = "Sharing_Settings.asgi.application"
+#ASGI_APPLICATION = "Sharing_Settings.asgi.application"
 
+ASGI_APPLICATION = "Sharing_Settings.routing.application"
 
 CHANNEL_LAYERS = {
     "default": {
@@ -85,7 +86,6 @@ CHANNEL_LAYERS = {
         },
     },
 }
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 

@@ -29,7 +29,7 @@ class FileConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_send(
             self.file_group_name,
             {
-                'type': 'file_comment',
+                'type': 'file.comment',
                 'message': message
             }
         )
@@ -43,16 +43,16 @@ class FileConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_send(
             self.file_group_name,
             {
-                'type': 'file_comment',
+                'type': 'file.comment',
                 'comment_data': comment_data
             }
         )
 
-        async def file_comment(self, event):
-            message = event['message']
-            await self.send(text_data=json.dumps({
-            'message': message
-            }))
+    async def file_comment(self, event):
+        message = event['message']
+        await self.send(text_data=json.dumps({
+        'message': message
+        }))
 
     @database_sync_to_async
     def _create_comment(self, content):
