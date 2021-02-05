@@ -6,7 +6,7 @@
     <title>Chat Room</title>
 </head>
 <body>
-    <div id="chat-log" cols="100" rows="20"></div><br>
+    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="submit" value="Send">
     {{ file_name|json_script:"file_name" }}
@@ -25,6 +25,7 @@
         console.log(chatSocket)
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
+            console
             document.querySelector('#chat-log').value += (data.message + '\n');
         };
 

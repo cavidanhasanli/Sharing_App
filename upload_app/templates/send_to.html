@@ -137,7 +137,7 @@ h2 a {
 			<th><h1>Faylın linki</h1></th>
 			<th><h1>Faylın yükləmə tarixi</h1></th>
 			<th><h1>Faylın məzmunu</h1></th>
-            <th><h1>Paylaş</h1></th>
+            <th><h1>Şərh otağı</h1></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -148,6 +148,7 @@ h2 a {
             <td><a href="{{ a.my_file.url }}">{{ a.my_file.url }}</a></td>
             <td>{{ a.create_date }}</td>
             <td>{{ a.file_description }}</td>
+            <td><a href="{% url 'room_page' file_name=a.file_name %}">Şərh otagı</a></td>
             </tr>
             {% endfor %}
          {% endfor %}
