@@ -148,7 +148,7 @@ h2 a {
             <td><a href="{{ a.my_file.url }}">{{ a.my_file.url }}</a></td>
             <td>{{ a.create_date }}</td>
             <td>{{ a.file_description }}</td>
-            <td><input type="submit" name="submit" value="Sherh otagi" id="file-name-{{ a.id }}"></td>
+            <td><a href="{% url 'room_page' file_name=a.file_name %}">Şərh otagı</a></td>
             </tr>
             {% endfor %}
          {% endfor %}

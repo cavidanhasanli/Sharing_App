@@ -81,3 +81,9 @@ def create_files_views(request):
     else:
         context['forms'] = forms
         return render(request, 'upload.html', context)
+
+
+def room(request, file_name):
+    return render(request, 'room.html', {
+        'file_name': file_name
+    })

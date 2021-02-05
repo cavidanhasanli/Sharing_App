@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'celery',
     'widget_tweaks',
     'channels',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

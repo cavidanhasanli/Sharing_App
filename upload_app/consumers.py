@@ -1,12 +1,13 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
+from .serializers import ReadOnlyCommentSerializers,CommentSerializers
 import asyncio
 
 class FileConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.file_name = self.scope['url_route']['kwargs']['file_name']
-        self.file_group_name = 'self.file_name
+        self.file_group_name = 'self.file_name'
 
         await self.channel_layer.group_add(
             self.file_group_name,
