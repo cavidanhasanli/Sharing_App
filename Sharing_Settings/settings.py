@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'upload_app.apps.UploadAppConfig',
     'celery',
     'widget_tweaks',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -71,18 +72,18 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Sharing_Settings.wsgi.application'
-# ASGI_APPLICATION = "Sharing_Settings.routing.application"
+#WSGI_APPLICATION = 'Sharing_Settings.wsgi.application'
+ASGI_APPLICATION = "Sharing_Settings.asgi.application"
 
-#
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             "hosts": [("127.0.0.1", 6379)],
-#         },
-#     },
-# }
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
