@@ -42,24 +42,37 @@ def home_views(request):
 
 @login_required()
 def send_from_views(request):
+    context = {}
     send_from = SenderFiles.objects.filter(sended_users=request.user)
+    try:
+        send_id = SenderFiles.objects.get(sended_users=request.user)
+        context['send_file_id'] = send_id.id
+    except:
+        send_id = None
 
     my_data = []
     for i in send_from.values():
         files = CreateFiles.objects.filter(id=i['sended_files_id'])
         my_data.append(files)
-    return render(request, 'send_from.html', context={'send_from': my_data})
+    context['send_from'] = my_data
+    return render(request, 'send_from.html', context)
 
 
 @login_required()
 def send_to_views(request):
+    context = {}
     send_from = SenderFiles.objects.filter(user_id=request.user.id)
-
+    try:
+        send_id = SenderFiles.objects.get(user_id=request.user.id)
+        context['send_file_id'] = send_id.id
+    except:
+        send_id = None
     my_data = []
     for i in send_from.values():
         files = CreateFiles.objects.filter(id=i['sended_files_id'])
         my_data.append(files)
-    return render(request, 'send_to.html', context={'send_to': my_data})
+    context['send_to'] = my_data
+    return render(request, 'send_to.html', context)
 
 
 @login_required()
@@ -84,6 +97,10 @@ def create_files_views(request):
 
 
 def room(request, file_name):
+    print(file_name)
+    print(Comment.objects.all().values())
+    comments = Comment.objects.filter(sender_file_id=file_name)
     return render(request, 'room.html', {
-        'file_name': file_name
+        'file_name': file_name,
+        'comments':comments
     })

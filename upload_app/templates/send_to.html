@@ -148,7 +148,7 @@ h2 a {
             <td><a href="{{ a.my_file.url }}">{{ a.my_file.url }}</a></td>
             <td>{{ a.create_date }}</td>
             <td>{{ a.file_description }}</td>
-            <td><a href="{% url 'room_page' file_name=a.file_name %}">Şərh otagı</a></td>
+            <td><a href="{% url 'room_page' file_name=send_file_id %}">Şərh otagı</a></td>
             </tr>
             {% endfor %}
          {% endfor %}

@@ -6,7 +6,12 @@
     <title>Chat Room</title>
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
+    <div id="chat-log">
+    {% for i in comments %}
+        <div>{{ i.comment }}</div>
+{#    <textarea id="chat-log" cols="100" rows="20">{{ i.comment }}</textarea><br>#}
+    {% endfor %}
+    </div>
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="submit" value="Send">
     {{ file_name|json_script:"file_name" }}
@@ -25,8 +30,14 @@
         console.log(chatSocket)
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            console
-            document.querySelector('#chat-log').value += (data.message + '\n');
+            theParent = document.getElementById("chat-log");
+            theKid = document.createElement("div");
+            theKid.innerHTML = data.message;
+
+            theParent.appendChild(theKid);
+
+            theParent.insertBefore(theKid, theParent.childNodes);
+
         };
 
         chatSocket.onclose = function(e) {
@@ -43,8 +54,10 @@
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
+            console.log(message)
             chatSocket.send(JSON.stringify({
-                'message': message
+                'sender_file': 13,
+                'comment': message
             }));
             messageInputDom.value = '';
         };

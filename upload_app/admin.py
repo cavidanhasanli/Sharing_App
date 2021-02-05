@@ -3,3 +3,4 @@ from upload_app.models import *
 # Register your models here.
 admin.site.register(CreateFiles)
 admin.site.register(SenderFiles)
+admin.site.register(Comment)
