@@ -2,7 +2,7 @@ from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-CELERY_BROKER_URL = f'{os.environ["CELERY_BROKER_URL"]}/0'
+CELERY_BROKER_URL = os.environ["CELERY_BROKER_URL"]
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
