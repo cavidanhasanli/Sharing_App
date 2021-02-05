@@ -7,6 +7,8 @@ services:
     environment:
       - APP_MODULE=Sharing_Settings.asgi:application
       - DJANGO_SETTINGS_MODULE=Sharing_Settings.settings.dev
+      - CHANNELS_REDIS_HOST=redis
+      - CHANNELS_REDIS_PORT=6379
     ports:
       - "8000:80"
     depends_on:
