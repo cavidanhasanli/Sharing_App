@@ -6,7 +6,7 @@ services:
       context: .
     environment:
       - APP_MODULE=Sharing_Settings.asgi:application
-      - DJANGO_SETTINGS_MODULE=Sharing_Settings.settings.dev
+      - DJANGO_SETTINGS_MODULE=Sharing_Settings.settings.prod
       - CHANNELS_REDIS_HOST=redis
       - CHANNELS_REDIS_PORT=6379
     ports:
