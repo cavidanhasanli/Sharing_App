@@ -2,7 +2,7 @@ from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-CELERY_BROKER_URL = os.environ["CELERY_BROKER_URL"]
+CELERY_BROKER_URL = f'{os.environ["CELERY_BROKER_URL"]}/0'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -25,6 +25,4 @@ CHANNEL_LAYERS = {
         },
     },
 }
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
