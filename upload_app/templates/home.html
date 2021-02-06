@@ -3,7 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ana Səhifə</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style>
         @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
@@ -115,20 +116,25 @@ h2 a {
 .container td:nth-child(4),
 .container th:nth-child(4) { display: none; }
 }
+
     </style>
 </head>
 <body>
 
- <a href="{% url 'create_file_page' %}" style="color: white">Buradan file yarada bilersiz</a>
+<header>
+    <div class="container">
+        <button class="btn btn-danger" ><a href="{% url 'create_file_page' %}" style="color: white">Buradan file yarada bilersiz</a></button>
  <br>
  <br>
-  <a href="{% url 'send_from_page' %}" style="color: white">Mene gonderilen fayllar</a>
+  <button class="btn btn-primary"><a href="{% url 'send_from_page' %}" style="color: white">Mene gonderilen fayllar</a></button>
   <br>
  <br>
- <a href="{% url 'send_to_page' %}" style="color: white">Menim gonderdiyim  fayllar</a>
+        <button class="btn btn-primary"><a href="{% url 'send_to_page' %}" style="color: white">Menim gonderdiyim  fayllar</a></button>
 
-<h1><span class="blue">&lt;</span>Ana<span class="blue">&gt;</span> <span class="yellow">Səhifə</pan></h1>
+    <h1><span class="blue">&lt;</span>Ana<span class="blue">&gt;</span> <span class="yellow">Səhifə</pan></h1>
 <h2>Sizin istifadəçi adınız {{ request.user.username }}</h2>
+    </div>
+</header>
 
 <table class="container">
 	<thead>
@@ -153,36 +159,6 @@ h2 a {
 
 	</tbody>
 </table>
-{#    <b>{{ request.user }}</b>#}
-{#    <h1>Home page</h1>#}
-{##}
-
-{#    <br>#}
-{#    <br>#}
-{#        <table>#}
-{#        <thead>#}
-{#        <tr>#}
-{#            <td>Faylin adi</td>#}
-{#            <td>Faylin linki</td>#}
-{#            <td>Faylin yukleme tarixi</td>#}
-{#            <td>Faylin mezmunu</td>#}
-{#            <td>Gonder</td>#}
-{#        </tr>#}
-{#        </thead>#}
-{##}
-{#        <tbody>#}
-{#        {% for a in all_data %}#}
-{#            <tr>#}
-{#            <td>{{ a.file_name }}</td>#}
-{#            <td><a href="{{ a.my_file.url }}">{{ a.my_file.url }}</a></td>#}
-{#            <td>{{ a.create_date }}</td>#}
-{#            <td>{{ a.file_description }}</td>#}
-{#            <td><form method="POST">{% csrf_token %}<input type="text" name="data-user" placeholder="gondereceyin userin adini qeyd edin"><input type="hidden" name="data-file" value="{{ a.id }}"><input id="btn-id" type="submit" name="submit" value="Gonder"></form></td>#}
-{#        </tr>#}
-{#         {% endfor %}#}
-{#        </tbody>#}
-{##}
-{#        </table>#}
 
 <script>
 

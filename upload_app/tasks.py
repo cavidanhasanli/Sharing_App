@@ -10,10 +10,10 @@ from datetime import datetime, timedelta
 @shared_task()
 def delete_file():
     now = timezone.now() - timedelta(days=7)
-    print(now)
+
     try:
         get_data = CreateFiles.objects.get(create_date=now)
         get_data.delete()
     except:
         None
-    print('bu silmek ucun funksiyadir ve isleyir')
+        print('Error Message:not working this a function')

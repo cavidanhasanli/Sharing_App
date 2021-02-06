@@ -21,7 +21,7 @@ def home_views(request):
         user_id = request.POST.get('data-user')
         file_id = request.POST.get('data-file')
         user_filter = User.objects.filter(username=user_id)
-        print(request.user.username == user_id)
+
         if user_filter:
 
             if request.user.username != user_id:
@@ -97,8 +97,7 @@ def create_files_views(request):
 
 
 def room(request, file_name):
-    print(file_name)
-    print(Comment.objects.all().values())
+
     comments = Comment.objects.filter(sender_file_id=file_name)
     return render(request, 'room.html', {
         'file_name': file_name,
