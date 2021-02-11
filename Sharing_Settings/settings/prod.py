@@ -1,7 +1,7 @@
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 CELERY_BROKER_URL = os.environ["CELERY_BROKER_URL"]
 
 # Database
@@ -28,6 +28,3 @@ CHANNEL_LAYERS = {
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = (os.path.join('static'),)
-
-MEDIA_URL = '/files/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'files')

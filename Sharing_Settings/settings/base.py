@@ -111,8 +111,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/files/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
+
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
