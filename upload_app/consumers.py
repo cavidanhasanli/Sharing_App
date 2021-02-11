@@ -31,6 +31,7 @@ class FileConsumer(AsyncWebsocketConsumer):
     async def create_comment(self, event):
 
         events = json.loads(event)
+
         comment = await self._create_comment(events)
 
         comment_data = ReadOnlyCommentSerializers(comment).data
@@ -54,6 +55,8 @@ class FileConsumer(AsyncWebsocketConsumer):
     def _create_comment(self, content):
 
         sender_file = content.get('sender_file')
+        comment = content.get('comment')
+        print(sender_file,comment)
 
-        Comment.objects.create(sender_file_id=sender_file,comment=comment)
+        Comment.objects.create(sender_file_id=15,comment=comment)
 

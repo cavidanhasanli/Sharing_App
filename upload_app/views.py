@@ -99,6 +99,7 @@ def create_files_views(request):
 def room(request, file_name):
 
     comments = Comment.objects.filter(sender_file_id=file_name)
+    print(comments)
     return render(request, 'room.html', {
         'file_name': file_name,
         'comments':comments
