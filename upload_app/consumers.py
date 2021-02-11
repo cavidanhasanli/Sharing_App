@@ -58,5 +58,5 @@ class FileConsumer(AsyncWebsocketConsumer):
         comment = content.get('comment')
         print(sender_file,comment)
 
-        Comment.objects.create(sender_file_id=15,comment=comment)
+        Comment.objects.create(sender_file_id=sender_file,comment=comment)
 
