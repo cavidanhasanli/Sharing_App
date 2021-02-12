@@ -29,6 +29,7 @@ class SenderFiles(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='user_id')
     sended_users = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     sended_files = models.ForeignKey(CreateFiles, on_delete=models.CASCADE, null=True, blank=True)
+    comment_activate = models.BooleanField(default=False,null=True,blank=True)
 
     def __str__(self):
         return f'{self.sended_users} / {self.sended_files}'

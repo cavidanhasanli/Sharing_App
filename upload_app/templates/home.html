@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load widget_tweaks %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -153,7 +154,7 @@ h2 a {
             <td><a href="{{ a.my_file.url }}">{{ a.my_file.url }}</a></td>
             <td>{{ a.create_date }}</td>
             <td>{{ a.file_description }}</td>
-            <td><form method="POST">{% csrf_token %}<input type="text" name="data-user" placeholder="gondereceyin userin adini qeyd edin"><input type="hidden" name="data-file" value="{{ a.id }}"><input id="btn-id" type="submit" name="submit" value="Paylaş"></form></td>
+            <td><form method="POST">{% csrf_token %}Comment olsunmu: <input type="checkbox" name="checkbox" value="checkbox"> <br><input type="text" name="data-user" placeholder="gondereceyin userin adini qeyd edin"><input type="hidden" name="data-file" value="{{ a.id }}"><input id="btn-id" type="submit" name="submit" value="Paylaş"></form></td>
         </tr>
          {% endfor %}
 

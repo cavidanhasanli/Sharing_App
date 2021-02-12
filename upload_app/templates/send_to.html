@@ -144,15 +144,21 @@ h2 a {
 		</tr>
 	</thead>
 	<tbody>
-		 {% for i in send_to %}
-            {% for a in i %}
+		 {% for i in all_files %}
+            {% for a in sended_files %}
+                {% if i.id == a.sended_files_id %}
             <tr>
-            <td>{{ a.file_name }}</td>
-            <td><a href="{{ a.my_file.url }}">{{ a.my_file.url }}</a></td>
-            <td>{{ a.create_date }}</td>
-            <td>{{ a.file_description }}</td>
-            <td><a href="{% url 'room_page' file_name=send_file_id %}">Şərh otagı</a></td>
+            <td>{{ i.file_name }}</td>
+            <td><a href="{{ i.my_file.url }}">{{ i.my_file.url }}</a></td>
+            <td>{{ i.create_date }}</td>
+            <td>{{ i.file_description }}</td>
+                {% if a.comment_activate %}
+            <td><a href="{% url 'room_page' file_name=a.id %}">Şərh otagı</a></td>
+                {% else %}
+                 <td>Burada şərh aktiv deyil..</td>
+                {% endif %}
             </tr>
+                {% endif %}
             {% endfor %}
          {% endfor %}
 

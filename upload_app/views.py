@@ -20,15 +20,23 @@ def home_views(request):
     if request.method == 'POST':
         user_id = request.POST.get('data-user')
         file_id = request.POST.get('data-file')
+        comment_activate = request.POST.get('checkbox')
         user_filter = User.objects.filter(username=user_id)
 
         if user_filter:
 
             if request.user.username != user_id:
-                get_user = User.objects.get(username=user_id)
-                SenderFiles.objects.create(user_id=int(request.user.id, ), sended_users_id=int(get_user.id),
-                                           sended_files_id=int(file_id))
-                return redirect('send_to_page')
+                if comment_activate == 'checkbox':
+                    get_user = User.objects.get(username=user_id)
+                    SenderFiles.objects.create(user_id=int(request.user.id, ), sended_users_id=int(get_user.id),
+                                               sended_files_id=int(file_id),comment_activate=True)
+                    return redirect('send_to_page')
+                else:
+                    get_user = User.objects.get(username=user_id)
+                    SenderFiles.objects.create(user_id=int(request.user.id, ), sended_users_id=int(get_user.id),
+                                               sended_files_id=int(file_id))
+                    return redirect('send_to_page')
+
 
             else:
                 messages.info(request, 'Ozunuze gondere bilmersiz')
@@ -44,34 +52,19 @@ def home_views(request):
 def send_from_views(request):
     context = {}
     send_from = SenderFiles.objects.filter(sended_users=request.user)
-    try:
-        send_id = SenderFiles.objects.get(sended_users=request.user)
-        context['send_file_id'] = send_id.id
-    except:
-        send_id = None
-
-    my_data = []
-    for i in send_from.values():
-        files = CreateFiles.objects.filter(id=i['sended_files_id'])
-        my_data.append(files)
-    context['send_from'] = my_data
+    all_files = CreateFiles.objects.all()
+    context['all_files'] = all_files
+    context['sender_files'] = send_from
     return render(request, 'send_from.html', context)
 
 
 @login_required()
 def send_to_views(request):
     context = {}
-    send_from = SenderFiles.objects.filter(user_id=request.user.id)
-    try:
-        send_id = SenderFiles.objects.get(user_id=request.user.id)
-        context['send_file_id'] = send_id.id
-    except:
-        send_id = None
-    my_data = []
-    for i in send_from.values():
-        files = CreateFiles.objects.filter(id=i['sended_files_id'])
-        my_data.append(files)
-    context['send_to'] = my_data
+    send_to = SenderFiles.objects.filter(user_id=request.user.id)
+    all_files = CreateFiles.objects.all()
+    context['all_files'] = all_files
+    context['sended_files'] = send_to
     return render(request, 'send_to.html', context)
 
 
@@ -97,10 +90,9 @@ def create_files_views(request):
 
 
 def room(request, file_name):
-
     comments = Comment.objects.filter(sender_file_id=file_name)
     print(comments)
     return render(request, 'room.html', {
         'file_name': file_name,
-        'comments':comments
+        'comments': comments
     })
